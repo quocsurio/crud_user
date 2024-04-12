@@ -6,7 +6,6 @@ use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-//Unknow
 class CustomAuthController extends Controller
 {
     public function index()
@@ -17,11 +16,11 @@ class CustomAuthController extends Controller
     public function customLogin(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'phone' => 'required',
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('phone', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard')
                 ->withSuccess('Signed in');
@@ -39,7 +38,7 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'phone' => 'required|unique:users', // Ensure the phone is unique in the users table
             'password' => 'required|min:6',
         ]);
 
@@ -53,7 +52,7 @@ class CustomAuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'phone' => $data['phone'], // Use phone instead of email
             'password' => Hash::make($data['password'])
         ]);
     }
