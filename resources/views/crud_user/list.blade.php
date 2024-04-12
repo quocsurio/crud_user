@@ -1,5 +1,4 @@
 @extends('dashboard')
-
 @section('content')
     <main class="login-form">
         <div class="container">
