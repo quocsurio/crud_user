@@ -126,6 +126,7 @@ class CrudUserController extends Controller
 
     /**
      * List of users
+     * Tuan Hung
      */
     public function listUser()
     {
