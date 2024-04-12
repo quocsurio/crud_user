@@ -75,6 +75,7 @@ class CrudUserController extends Controller
      * View user detail page
      */
     public function readUser(Request $request) {
+        // Lấy id của người dùng từ request
         $user_id = $request->get('id');
         $user = User::find($user_id);
 
